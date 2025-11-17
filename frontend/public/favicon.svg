@@ -1,30 +1,48 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" rx="6" fill="url(#bgGradient)"/>
+  <!-- Black background -->
+  <rect width="32" height="32" rx="6" fill="#000000"/>
   
-  <!-- Gaming controller icon -->
-  <g transform="translate(6, 8)">
-    <!-- Controller body -->
-    <path d="M3 4 C3 2, 4 1, 6 1 L8 1 L8 1 L10 1 C12 1, 13 2, 13 4 L13 8 C13 10, 12 11, 10 11 L6 11 C4 11, 3 10, 3 8 Z" 
-          fill="white" 
-          fill-opacity="0.9"
-          stroke="white" 
-          stroke-width="1" 
-          stroke-linecap="round" 
-          stroke-linejoin="round"/>
+  <!-- Neural network / Dendrite structure -->
+  <g transform="translate(16, 16)">
+    <!-- Center node -->
+    <circle cx="0" cy="0" r="2" fill="#FFFFFF"/>
     
-    <!-- D-pad -->
-    <line x1="5.5" y1="5" x2="5.5" y2="7.5" stroke="#3b82f6" stroke-width="1" stroke-linecap="round"/>
-    <line x1="4.25" y1="6.25" x2="6.75" y2="6.25" stroke="#3b82f6" stroke-width="1" stroke-linecap="round"/>
+    <!-- Top branch -->
+    <path d="M 0 -2 L 0 -8" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="0" cy="-8" r="1.5" fill="#FFFFFF"/>
+    <path d="M 0 -8 L -3 -11" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="-3" cy="-11" r="1" fill="#FFFFFF"/>
+    <path d="M 0 -8 L 3 -11" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="3" cy="-11" r="1" fill="#FFFFFF"/>
     
-    <!-- Buttons -->
-    <circle cx="10.5" cy="5" r="0.8" fill="#8b5cf6"/>
-    <circle cx="10.5" cy="7.5" r="0.8" fill="#8b5cf6"/>
+    <!-- Bottom branch -->
+    <path d="M 0 2 L 0 8" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="0" cy="8" r="1.5" fill="#FFFFFF"/>
+    <path d="M 0 8 L -3 11" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="-3" cy="11" r="1" fill="#FFFFFF"/>
+    <path d="M 0 8 L 3 11" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="3" cy="11" r="1" fill="#FFFFFF"/>
+    
+    <!-- Left branch -->
+    <path d="M -2 0 L -8 0" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="-8" cy="0" r="1.5" fill="#FFFFFF"/>
+    <path d="M -8 0 L -11 -3" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="-11" cy="-3" r="1" fill="#FFFFFF"/>
+    <path d="M -8 0 L -11 3" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="-11" cy="3" r="1" fill="#FFFFFF"/>
+    
+    <!-- Right branch -->
+    <path d="M 2 0 L 8 0" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="8" cy="0" r="1.5" fill="#FFFFFF"/>
+    <path d="M 8 0 L 11 -3" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="11" cy="-3" r="1" fill="#FFFFFF"/>
+    <path d="M 8 0 L 11 3" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="11" cy="3" r="1" fill="#FFFFFF"/>
+    
+    <!-- Diagonal connections for complexity -->
+    <path d="M 0 0 L 5 5" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+    <path d="M 0 0 L -5 5" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+    <path d="M 0 0 L 5 -5" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+    <path d="M 0 0 L -5 -5" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
   </g>
-  
-  <defs>
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
-    </linearGradient>
-  </defs>
 </svg>

@@ -1,7 +1,5 @@
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { Product } from '../models/product.model.js';
-import { connectDB } from '../config/database.js';
+import { pool, connectDB } from '../config/database.js';
 
 dotenv.config();
 
@@ -47,15 +45,36 @@ const seedDatabase = async () => {
     await connectDB();
 
     console.log('🗑️  Clearing existing products...');
-    await Product.deleteMany();
+    await pool.execute('DELETE FROM products');
 
     console.log('📦 Seeding products...');
-    await Product.insertMany(seedProducts);
+    
+    // Insert products one by one
+    for (const product of seedProducts) {
+      await pool.execute(
+        `INSERT INTO products (id, name, price, image, rating, category, description, features, in_stock, stock)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          product.id,
+          product.name,
+          product.price,
+          product.image,
+          product.rating,
+          product.category,
+          product.description,
+          JSON.stringify(product.features),
+          product.inStock,
+          product.stock
+        ]
+      );
+    }
 
     console.log(`✅ Successfully seeded ${seedProducts.length} products`);
+    await pool.end();
     process.exit(0);
   } catch (error) {
     console.error('❌ Error seeding database:', error);
+    await pool.end();
     process.exit(1);
   }
 };

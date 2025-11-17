@@ -6,10 +6,11 @@ import compression from 'compression';
 import dotenv from 'dotenv';
 import { connectDB } from './config/database.js';
 import authRoutes from './routes/auth.routes.js';
-import productRoutes from './routes/product.routes.js';
-import cartRoutes from './routes/cart.routes.js';
-import orderRoutes from './routes/order.routes.js';
-import userRoutes from './routes/user.routes.js';
+// TODO: Convert these to MySQL
+// import productRoutes from './routes/product.routes.js';
+// import cartRoutes from './routes/cart.routes.js';
+// import orderRoutes from './routes/order.routes.js';
+// import userRoutes from './routes/user.routes.js';
 import { errorHandler } from './middleware/error.middleware.js';
 
 // Load environment variables
@@ -40,10 +41,11 @@ app.get('/health', (req: any, res: any) => {
 
 // API Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/cart', cartRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/users', userRoutes);
+// TODO: Convert these routes to MySQL
+// app.use('/api/products', productRoutes);
+// app.use('/api/cart', cartRoutes);
+// app.use('/api/orders', orderRoutes);
+// app.use('/api/users', userRoutes);
 
 // 404 handler
 app.use((req: any, res: any) => {

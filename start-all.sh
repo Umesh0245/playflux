@@ -13,11 +13,12 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${GREEN}🚀 Vault Prime Shop - Development Mode${NC}"
+echo -e "${GREEN}🚀 PlayFlux - Development Mode${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
-echo -e "${YELLOW}📍 Frontend:${NC} http://localhost:5174"
-echo -e "${YELLOW}📍 Backend:${NC}  http://localhost:3000"
+echo -e "${YELLOW}📍 Frontend:${NC}  http://localhost:5174"
+echo -e "${YELLOW}📍 Backend:${NC}   http://localhost:3000"
+echo -e "${YELLOW}📍 Database:${NC}  MySQL (localhost:3306)"
 echo ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
@@ -56,13 +57,17 @@ if [ ! -d "backend/node_modules" ] || [ ! -d "frontend/node_modules" ]; then
     echo ""
 fi
 
+# Skip MongoDB check - using MySQL now
+echo -e "${GREEN}✅ Using MySQL database${NC}"
+echo ""
+
 # Start backend server in background
 echo -e "${BLUE}🔧 Starting backend server...${NC}"
 (cd backend && npm run dev > /dev/null 2>&1) &
 BACKEND_PID=$!
 
 # Wait a moment for backend to initialize
-sleep 2
+sleep 3
 
 # Start frontend server in background
 echo -e "${BLUE}🎨 Starting frontend server...${NC}"

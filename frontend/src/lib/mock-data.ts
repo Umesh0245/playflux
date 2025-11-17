@@ -1,15 +1,58 @@
-import keyboardImage from "@/assets/keyboard.jpg";
-import mouseImage from "@/assets/mouse.jpg";
-import headsetImage from "@/assets/headset.jpg";
-import monitorImage from "@/assets/monitor.jpg";
-import controllerImage from "@/assets/controller.jpg";
-import chairImage from "@/assets/chair.jpg";
+// Professional gaming gear images from Unsplash with cohesive bright aesthetics
+const keyboardImages = [
+  "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&q=80", // RGB mechanical keyboard
+  "https://images.unsplash.com/photo-1595225476474-87563907a212?w=800&q=80", // Compact mechanical keyboard
+  "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=800&q=80", // Modern gaming keyboard
+  "https://images.unsplash.com/photo-1601445638532-3c6f6c3aa1d6?w=800&q=80", // Wireless keyboard
+  "https://images.unsplash.com/photo-1602489602098-07ec19edaa19?w=800&q=80", // Mechanical keyboard closeup
+];
+
+const mouseImages = [
+  "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800&q=80", // Gaming mouse RGB
+  "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=800&q=80", // Wireless gaming mouse
+  "https://images.unsplash.com/photo-1563297007-0686b7003af7?w=800&q=80", // Pro gaming mouse
+  "https://images.unsplash.com/photo-1629429407756-2907d3788da5?w=800&q=80", // Modern mouse
+  "https://images.unsplash.com/photo-1586920740099-e48f76c5c0ff?w=800&q=80", // Gaming mouse side view
+];
+
+const headsetImages = [
+  "https://images.unsplash.com/photo-1599669454699-248893623440?w=800&q=80", // Professional gaming headset
+  "https://images.unsplash.com/photo-1487215078519-e21cc028cb29?w=800&q=80", // Wireless headphones
+  "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&q=80", // Gaming headset RGB
+  "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&q=80", // Premium headphones
+  "https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?w=800&q=80", // Modern headset
+];
+
+const monitorImages = [
+  "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&q=80", // Curved gaming monitor
+  "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&q=80", // Ultrawide monitor
+  "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=800&q=80", // Gaming monitor setup
+  "https://images.unsplash.com/photo-1629825276228-b3d498f7b56d?w=800&q=80", // Modern display
+  "https://images.unsplash.com/photo-1587202372583-49330a15584d?w=800&q=80", // Professional monitor
+];
+
+const controllerImages = [
+  "https://images.unsplash.com/photo-1605901309584-818e25960a8f?w=800&q=80", // Gaming controller
+  "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=800&q=80", // Xbox style controller
+  "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&q=80", // Pro controller
+  "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80", // Gaming gamepad
+  "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80", // Modern controller
+];
+
+const chairImages = [
+  "https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&q=80", // Modern gaming chair
+  "https://images.unsplash.com/photo-1598300188904-e9bc892fe5c6?w=800&q=80", // Executive gaming chair
+  "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=800&q=80", // Ergonomic chair
+  "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800&q=80", // Professional gaming chair
+  "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80", // Racing style chair
+];
 
 export interface Product {
   id: string;
   name: string;
   price: number;
   image: string;
+  images: string[]; // Multiple images for gallery
   rating: number;
   category: string;
   description: string;
@@ -42,7 +85,8 @@ const generateProducts = (): Product[] => {
   keyboards.forEach((kb, i) => products.push({
     id: `kb-${i + 1}`,
     ...kb,
-    image: keyboardImage,
+    image: keyboardImages[i % keyboardImages.length],
+    images: [...keyboardImages], // All images for gallery
     category: "Keyboard",
     inStock: true
   }));
@@ -74,7 +118,8 @@ const generateProducts = (): Product[] => {
   mice.forEach((m, i) => products.push({
     id: `ms-${i + 1}`,
     ...m,
-    image: mouseImage,
+    image: mouseImages[i % mouseImages.length],
+    images: [...mouseImages], // All images for gallery
     category: "Mouse",
     inStock: true
   }));
@@ -104,7 +149,8 @@ const generateProducts = (): Product[] => {
   headsets.forEach((h, i) => products.push({
     id: `hs-${i + 1}`,
     ...h,
-    image: headsetImage,
+    image: headsetImages[i % headsetImages.length],
+    images: [...headsetImages], // All images for gallery
     category: "Headset",
     inStock: true
   }));
@@ -133,7 +179,8 @@ const generateProducts = (): Product[] => {
   monitors.forEach((mon, i) => products.push({
     id: `mon-${i + 1}`,
     ...mon,
-    image: monitorImage,
+    image: monitorImages[i % monitorImages.length],
+    images: [...monitorImages], // All images for gallery
     category: "Monitor",
     inStock: i !== 8 // Make OLED out of stock as example
   }));
@@ -160,7 +207,8 @@ const generateProducts = (): Product[] => {
   controllers.forEach((c, i) => products.push({
     id: `ctrl-${i + 1}`,
     ...c,
-    image: controllerImage,
+    image: controllerImages[i % controllerImages.length],
+    images: [...controllerImages], // All images for gallery
     category: "Controller",
     inStock: true
   }));
@@ -187,10 +235,17 @@ const generateProducts = (): Product[] => {
   chairs.forEach((ch, i) => products.push({
     id: `chr-${i + 1}`,
     ...ch,
-    image: chairImage,
+    image: chairImages[i % chairImages.length],
+    images: [...chairImages], // All images for gallery
     category: "Chair",
     inStock: true
   }));
+
+  // Shuffle products to mix categories
+  for (let i = products.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [products[i], products[j]] = [products[j], products[i]];
+  }
 
   return products;
 };

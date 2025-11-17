@@ -4,7 +4,6 @@ import { Search, ShoppingCart, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useUserStore } from "@/lib/user-store";
 import { mockProducts } from "@/lib/mock-data";
-import PlayFluxLogo from "@/assets/playflux-logo.svg";
 import PillNav from "@/components/PillNav";
 
 interface HeaderProps {
@@ -70,25 +69,28 @@ export const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
     <header className="sticky top-0 z-50 bg-white backdrop-blur-xl border-b border-gray-200 shadow-lg">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex items-center justify-between h-20">
-          {/* Left: Logo + Search */}
-          <div className="flex items-center gap-6">
+          {/* Left: Logo + Name */}
+          <div className="flex items-center gap-8">
             <div
-              className="flex items-center cursor-pointer hover:scale-105 transition-transform"
+              className="flex items-center gap-2.5 cursor-pointer group transition-all"
               onClick={() => navigate("/")}
             >
               <img
-                src={PlayFluxLogo}
+                src="/logo.svg"
                 alt="PlayFlux"
-                className="h-10 w-auto"
+                className="h-9 w-auto group-hover:scale-110 transition-transform"
               />
+              <span className="text-2xl font-bold bg-gradient-to-r from-black via-gray-800 to-black bg-clip-text text-transparent tracking-tight group-hover:tracking-normal transition-all">
+                PlayFlux
+              </span>
             </div>
 
-            <div className="relative w-80">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4 z-10" />
+            <div className="relative w-96">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-5 w-5 z-10" />
               <input
                 type="search"
                 placeholder="Search products..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-gray-100 border border-gray-300 text-black placeholder:text-gray-500 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all text-sm"
+                className="w-full pl-11 pr-4 py-3 rounded-lg bg-gray-100 border-2 border-gray-300 text-black placeholder:text-gray-600 focus:bg-white focus:border-black focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all text-sm font-medium shadow-sm"
                 value={searchQuery}
                 onChange={handleSearchChange}
                 onKeyDown={handleKeyDown}

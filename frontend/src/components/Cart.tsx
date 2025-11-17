@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { formatPrice } from "@/lib/currency";
 
 export interface CartItem {
   id: string;
@@ -50,7 +51,7 @@ export const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem }:
                     />
                     <div className="flex-1">
                       <h4 className="font-semibold mb-1">{item.name}</h4>
-                      <p className="text-primary font-bold">${item.price}</p>
+                      <p className="text-primary font-bold">{formatPrice(item.price)}</p>
                       <div className="flex items-center gap-2 mt-2">
                         <Button
                           variant="outline"
@@ -88,7 +89,7 @@ export const Cart = ({ isOpen, onClose, items, onUpdateQuantity, onRemoveItem }:
               <Separator />
               <div className="flex justify-between text-lg font-semibold">
                 <span>Total:</span>
-                <span className="text-primary text-2xl">${total.toFixed(2)}</span>
+                <span className="text-primary text-2xl">{formatPrice(total)}</span>
               </div>
               <Button className="w-full bg-success hover:bg-success/90 text-success-foreground text-lg py-6">
                 Checkout

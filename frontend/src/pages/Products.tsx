@@ -11,12 +11,12 @@ import { toast } from "sonner";
 
 const categories = [
   { id: "all", name: "All Products" },
-  { id: "keyboards", name: "Keyboards" },
-  { id: "mice", name: "Mice" },
-  { id: "headsets", name: "Headsets" },
-  { id: "monitors", name: "Monitors" },
-  { id: "controllers", name: "Controllers" },
-  { id: "chairs", name: "Gaming Chairs" },
+  { id: "Keyboard", name: "Keyboards" },
+  { id: "Mouse", name: "Mice" },
+  { id: "Headset", name: "Headsets" },
+  { id: "Monitor", name: "Monitors" },
+  { id: "Controller", name: "Controllers" },
+  { id: "Chair", name: "Gaming Chairs" },
 ];
 
 const Products = () => {
@@ -60,7 +60,7 @@ const Products = () => {
     
     // Filter by category
     if (selectedCategory && selectedCategory !== "all") {
-      filtered = filtered.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
+      filtered = filtered.filter(p => p.category === selectedCategory);
     }
     
     // Sort products
@@ -83,7 +83,7 @@ const Products = () => {
         <BackButton />
         
         <div className="mb-10">
-          <h1 className="text-4xl font-semibold mb-6 text-white tracking-tight">
+          <h1 className="text-4xl font-bold mb-8 text-white tracking-tight">
             {searchQuery ? `Search results for "${searchQuery}"` : "Products"}
           </h1>
           
@@ -94,11 +94,11 @@ const Products = () => {
                 key={category.id}
                 variant={selectedCategory === category.id ? "default" : "outline"}
                 onClick={() => handleCategoryChange(category.id)}
-                size="sm"
-                className={`rounded-full transition-all ${
+                size="lg"
+                className={`rounded-full font-semibold transition-all ${
                   selectedCategory === category.id 
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/50" 
-                    : "border-2 hover:border-primary hover:bg-primary/10"
+                    ? "bg-white text-black hover:bg-gray-100 shadow-lg scale-105" 
+                    : "bg-black text-white border-2 border-white hover:bg-white hover:text-black"
                 }`}
               >
                 {category.name}
@@ -108,11 +108,11 @@ const Products = () => {
 
           {/* Results count and sort */}
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-300">
+            <p className="text-base text-white font-semibold">
               {filteredAndSortedProducts.length} products
             </p>
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-[180px] rounded-lg">
+              <SelectTrigger className="w-[200px] rounded-lg bg-white border-2 border-gray-200 font-semibold">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>

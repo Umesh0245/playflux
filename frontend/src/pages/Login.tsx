@@ -8,7 +8,7 @@ import { BackButton } from "@/components/BackButton";
 import { useUserStore } from "@/lib/user-store";
 import { useToast } from "@/hooks/use-toast";
 import { Lock, Mail, ArrowRight } from "lucide-react";
-import LaserFlow from "@/components/LaserFlow";
+import Lightning from "@/components/Lightning";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,41 +16,42 @@ const Login = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    login(email, password);
-    toast({
-      title: "Login successful!",
-      description: "Welcome back to PlayFlux",
-    });
-    navigate("/");
+    setIsLoading(true);
+    
+    try {
+      await login(email, password);
+      toast({
+        title: "Login successful!",
+        description: "Welcome back to PlayFlux",
+      });
+      navigate("/");
+    } catch (error: any) {
+      toast({
+        title: "Login failed",
+        description: error.message || "Please check your credentials",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center p-4 bg-black relative overflow-hidden">
-      {/* LaserFlow Background - Simple, highly visible */}
-      <div 
-        className="absolute top-0 right-0 w-1/2 h-full z-0"
-        style={{ 
-          opacity: 1
-        }}
-      >
-        <LaserFlow
-          horizontalBeamOffset={0.8}
-          verticalBeamOffset={0.2}
-          color="#00FFFF"
-          fogIntensity={5.0}
-          wispIntensity={80.0}
-          verticalSizing={10.0}
-          horizontalSizing={5.0}
-          flowSpeed={2.0}
-          wispSpeed={3.0}
+      {/* Lightning Background - Blue for Login */}
+      <div className="absolute inset-0 z-0">
+        <Lightning
+          hue={220}
+          xOffset={0}
+          speed={1.2}
+          intensity={1.5}
+          size={1}
         />
       </div>
-
-      {/* Gradient overlay from left for form readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-[1]" />
 
       {/* Left-aligned container */}
       <div className="w-full max-w-md relative z-10 ml-8 md:ml-20">
@@ -122,8 +123,9 @@ const Login = () => {
               <Button 
                 type="submit" 
                 className="w-full h-11 bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 font-medium shadow-lg shadow-primary/20 gap-2"
+                disabled={isLoading}
               >
-                Sign in
+                {isLoading ? "Signing in..." : "Sign in"}
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </form>
